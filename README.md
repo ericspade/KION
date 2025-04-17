@@ -37,7 +37,9 @@ redis-cli monitor
 
 4) Установите все нужные зависимости в python проект и запустите 3 отдельных сервиса (в 3х терминалах):
    python manage.py runserver
+   
    python kafkacons.py
+   
    uvicorn fastapi_server:app --host 0.0.0.0 --port 8001 --workers 4
 
 
@@ -47,8 +49,11 @@ http://<ip локальной машины>:8001/api-fast/view-event
 
 Все нужные порты:
 8000 (Django)
+
 8001 (FastAPI/uvicorn)
+
 9092 (Kafka)
+
 5432 (Postgres)
 
 Пишите мне в ТГ если возникнут проблемы с деплоем, постараюсь быстро ответить.
