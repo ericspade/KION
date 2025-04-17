@@ -23,6 +23,7 @@
 4) Я использовал Redis для кэширования хэшей установленный как отдельная VMWare вирт. машина
    
 Образ: Ubuntu 24.10 Live Server
+
 Настройка сети: Bridged + Replicate physical network connection state
 
 Установите Ubuntu в vmware workstation и в него redis-server(порт 6379):
@@ -67,6 +68,8 @@ http://<ip локальной машины>:8001/api-fast/view-event
 9092 (Kafka)
 
 5432 (Postgres)
+
+6379 (Redis)
 
 Пишите мне в ТГ если возникнут проблемы с деплоем, постараюсь быстро ответить.
 Деплой в конечно итоге будет в облако (AWS) как оговаривалось.
