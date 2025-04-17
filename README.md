@@ -1,9 +1,10 @@
 Здравствуйте!
 
 Здесь вы можете найти мой предварительный билд дедубликатора событий.
-Билд выдерживает чуть меньше 1000 RPS согласно Locust.
+Билд выдерживает около 1000 RPS согласно Locust.
 
-![LocustTEST](https://github.com/user-attachments/assets/1cd8bcf9-d450-48e2-bedc-c25e8326598b)
+![image](https://github.com/user-attachments/assets/f2486876-b1ef-45ff-bf67-126e2369dec4)
+
 
 
 Инструкция по деплою:
@@ -38,3 +39,17 @@ redis-cli monitor
    python manage.py runserver
    python kafkacons.py
    uvicorn fastapi_server:app --host 0.0.0.0 --port 8001 --workers 4
+
+
+API эндпоинт:
+http://<ip локальной машины>:8001/api-fast/view-event
+
+
+Все нужные порты:
+8000 (Django)
+8001 (FastAPI/uvicorn)
+9092 (Kafka)
+5432 (Postgres)
+
+Пишите мне в ТГ если возникнут проблемы с деплоем, постараюсь быстро ответить.
+Деплой в конечно итоге будет в облако (AWS) как оговаривалось.
