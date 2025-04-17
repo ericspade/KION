@@ -10,7 +10,7 @@
 Инструкция по деплою:
 
 1) Клонируйте этот python-проект
-2) Установите Kafka, Zookeeper Postgres как контейнеры Docker на локальной машине следующими 3мя командами:
+2) Установите Kafka, Zookeeper и Postgres как контейнеры Docker на локальной машине следующими 3мя командами:
    
    docker run -d --name kafka --network kafka-net -e KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181 -e KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://localhost:9092 -e KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1 -p 9092:9092 confluentinc/cp-kafka:latest
    
