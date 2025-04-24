@@ -14,11 +14,11 @@
 1. Клонируйте этот python-проект
 2. Установите Kafka, Zookeeper и Postgres как контейнеры Docker на локальной машине следующими 3мя командами:
    
-   docker run -d --name kafka --network kafka-net -e KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181 -e KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://localhost:9092 -e KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1 -p 9092:9092 confluentinc/cp-kafka:latest
+      docker run -d --name kafka --network kafka-net -e KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181 -e KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://localhost:9092 -e KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1 -p 9092:9092 confluentinc/cp-kafka:latest
    
-   docker exec kafka kafka-topics --create --topic dedup_events --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1
+      docker exec kafka kafka-topics --create --topic dedup_events --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1
    
-   docker run --name pg-json -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=dbadmin -e POSTGRES_DB=kion -p 5432:5432 -d postgres:16
+      docker run --name pg-json -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=dbadmin -e POSTGRES_DB=kion -p 5432:5432 -d postgres:16
    
    (Тонкой настройки контейнеров не требуется)
 
@@ -50,11 +50,11 @@
 
 5. Установите все нужные зависимости в python проект и запустите 3 отдельных сервиса (в 3х терминалах):
    
-   python manage.py runserver
+         python manage.py runserver
    
-   python kafkacons.py
+         python kafkacons.py
    
-   uvicorn fastapi_server:app --host 0.0.0.0 --port 8001 --workers 4
+         uvicorn fastapi_server:app --host 0.0.0.0 --port 8001 --workers 4
 
 
 API эндпоинт:
