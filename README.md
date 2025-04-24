@@ -24,11 +24,11 @@
 
 3. Я использовал Redis для кэширования хэшей установленный как отдельная VMWare вирт. машина
    
-   Образ: Ubuntu 24.10 Live Server
+   <ins>Образ:</ins> Ubuntu 24.10 Live Server
 
-   Настройка сети: Bridged + Replicate physical network connection state
+   <ins>Настройка сети:</ins> Bridged + Replicate physical network connection state
 
-   Установите Ubuntu в vmware workstation и в него redis-server(порт 6379):
+   **Установите Ubuntu в vmware workstation и в него redis-server(порт 6379):**
 
          sudo apt install redis-server
 
