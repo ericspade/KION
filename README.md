@@ -50,13 +50,13 @@
 
 5. Установите все нужные зависимости в python проект и запустите 3 отдельных сервиса (в 3х терминалах):
    
-         python manage.py runserver
+         ```python manage.py runserver```
    
    
-         python kafkacons.py
+         ```python kafkacons.py```
    
    
-         uvicorn fastapi_server:app --host 0.0.0.0 --port 8001 --workers 4
+         ```uvicorn fastapi_server:app --host 0.0.0.0 --port 8001 --workers 4```
 
 
 API эндпоинт:
