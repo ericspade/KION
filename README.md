@@ -30,15 +30,16 @@
 
    Установите Ubuntu в vmware workstation и в него redis-server(порт 6379):
 
-      sudo apt install redis-server
+         sudo apt install redis-server
 
-      sudo systemctl enable redis
+         sudo systemctl enable redis
 
-      sudo systemctl start redis
+         sudo systemctl start redis
 
-      sudo apt install net-tools
+         sudo apt install net-tools
 
-      (что бы проверить работу): netstat -an | grep 6379
+      (что бы проверить работу):
+         netstat -an | grep 6379
 
       В конфиге /etc/redis/redis.conf: измените bind на 'bind 0.0.0.0' и 'protected-mode yes' на 'protected-mode no'
 
@@ -47,7 +48,7 @@
          redis-cli monitor
 
 
-4. Установите все нужные зависимости в python проект и запустите 3 отдельных сервиса (в 3х терминалах):
+5. Установите все нужные зависимости в python проект и запустите 3 отдельных сервиса (в 3х терминалах):
    
    python manage.py runserver
    
