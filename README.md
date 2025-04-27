@@ -92,6 +92,7 @@
 В него дублируются системные логи (обрабатываемых событий), их можно наблюдать во вкладке LOGS (открыв браузерный интерфейс locust'а)
 
 # locustfile.py
+
 from locust import HttpUser, task, between
 import uuid
 import random
@@ -255,8 +256,8 @@ class FastAPITestUser(HttpUser):
             if response.status_code == 200:
                 logs = response.json().get("srvlogs", [])
                 if logs:
-                    logger.info(f"Recent Server Logs: {logs[-1]}")
+                    logger.info(f": {logs[-1]}")
             else:
-                logger.error(f"Failed to fetch /status: {response.status_code}")
+                logger.error(f"Ошибка эндпоинта /status: {response.status_code}")
 
 
