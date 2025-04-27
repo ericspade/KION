@@ -3,11 +3,10 @@ import os
 import traceback
 from datetime import datetime
 from kafka import KafkaConsumer
-import ydb
 import psycopg2
 
 # Kafka config
-KAFKA_TOPIC = os.getenv("KAFKA_TOPIC", "deduplication_events")
+KAFKA_TOPIC = os.getenv("KAFKA_TOPIC", "dedup_events")
 KAFKA_SERVERS = os.getenv("KAFKA_BOOTSTRAP_SERVERS", "localhost:9092")
 
 consumer = KafkaConsumer(
