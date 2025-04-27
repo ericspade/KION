@@ -93,17 +93,17 @@
 
 # locustfile.py
 
-      from locust import HttpUser, task, between
-      import uuid
-      import random
-      from datetime import datetime
-      import json
-      import logging
-      
-      logger = logging.getLogger("locust")
-      
-      class FastAPITestUser(HttpUser):
-          wait_time = between(0.001, 0.005)
+   from locust import HttpUser, task, between
+   import uuid
+   import random
+   from datetime import datetime
+   import json
+   import logging
+   
+   logger = logging.getLogger("locust")
+   
+   class FastAPITestUser(HttpUser):
+       wait_time = between(0.001, 0.005)
 
     @task(5)
     def send_event(self):
