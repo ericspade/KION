@@ -16,8 +16,17 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+srvlogs = []
+
+
+def add_log(message):
+    if len(srvlogs) >= 100:
+        srvlogs.pop(0)
+    srvlogs.append(message)
+
+
 # Redis
-redis_client = redis.Redis(host="192.168.0.110", port=6379, db=0)
+redis_client = redis.Redis(host="192.168.0.112", port=6379, db=0)
 
 # Kafka
 producer = KafkaProducer(
@@ -25,7 +34,7 @@ producer = KafkaProducer(
     value_serializer=lambda v: json.dumps(v).encode("utf-8")
 )
 
-KAFKA_TOPIC = os.getenv("KAFKA_TOPIC", "deduplication_events")
+KAFKA_TOPIC = os.getenv("KAFKA_TOPIC", "dedup_events")
 CACHE_TIMEOUT = 604800
 PERSIST_DAYS = 7
 
@@ -183,6 +192,7 @@ async def view_event(event: EventModel, request: Request):
 
     if get_result:
         print(f"[Дубликат] Найдено то же событие:  {dedupe_key} в {datetime.utcnow().isoformat()}")
+        add_log(f"[Дубликат] Найдено то же событие:  {dedupe_key} в {datetime.utcnow().isoformat()}")
         return {"status": "duplicate", "dedupe_key": dedupe_key}
 
     payload = {
@@ -194,5 +204,9 @@ async def view_event(event: EventModel, request: Request):
 
     producer.send(KAFKA_TOPIC, value=payload)
     print(f"[Новое событие] Уникальное событие {dedupe_key} записывается в основную БД {datetime.utcnow().isoformat()}")
+    add_log(f"[Новое событие] Уникальное событие {dedupe_key} записывается в основную БД {datetime.utcnow().isoformat()}")
 
 
+@app.get("/api-fast/status")
+async def get_status():
+    return {"srvlogs": srvlogs}
