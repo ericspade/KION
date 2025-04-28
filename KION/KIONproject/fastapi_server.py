@@ -191,8 +191,8 @@ async def view_event(event: EventModel, request: Request):
     get_result, _ = pipe.execute()
 
     if get_result:
-        print(f"[Дубликат] Найдено то же событие:  {dedupe_key} в {datetime.utcnow().isoformat()}")
-        add_log(f"[Дубликат] Найдено то же событие:  {dedupe_key} в {datetime.utcnow().isoformat()}")
+        print(f"[Дубликат] Найдено то же событие:  {dedupe_key}; sid: {event.sid} в {datetime.utcnow().isoformat()}")
+        add_log(f"[Дубликат] Найдено то же событие:  {dedupe_key}; sid: {event.sid} в {datetime.utcnow().isoformat()}")
         return {"status": "duplicate", "dedupe_key": dedupe_key}
 
     payload = {
@@ -203,8 +203,8 @@ async def view_event(event: EventModel, request: Request):
     }
 
     producer.send(KAFKA_TOPIC, value=payload)
-    print(f"[Новое событие] Уникальное событие {dedupe_key} записывается в основную БД {datetime.utcnow().isoformat()}")
-    add_log(f"[Новое событие] Уникальное событие {dedupe_key} записывается в основную БД {datetime.utcnow().isoformat()}")
+    print(f"[Новое событие] Уникальное событие {dedupe_key}; sid: {event.sid} записывается в основную БД {datetime.utcnow().isoformat()}")
+    add_log(f"[Новое событие] Уникальное событие {dedupe_key}; sid: {event.sid} записывается в основную БД {datetime.utcnow().isoformat()}")
 
 
 @app.get("/api-fast/status")
